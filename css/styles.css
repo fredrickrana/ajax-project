@@ -1,0 +1,148 @@
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.header-background {
+  background-color: #167daa;
+}
+
+.black-background {
+  background-color: #000;
+}
+
+.silver-background {
+  background-color: #f6f6f6;
+}
+
+.image-background {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.1)), url("https://blog.bonsecours.com/wp-content/uploads/2020/01/BSC_HealthyPlate_1200x628_Revised-1200x610.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-width: 100%;
+  height: auto;
+}
+
+.padding-10 {
+  padding: 10px 0;
+}
+
+.padding-30 {
+  padding: 30px 0;
+}
+
+.padding-40 {
+  padding: 0 40px;
+}
+
+.footer-padding {
+  padding: 15px 0;
+}
+
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+.margin-100 {
+  margin: 0 0 100px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.align-items {
+  align-items: center;
+}
+
+.logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 100px;
+  margin: 0 10px;
+}
+
+.title {
+  font-size: 55px;
+  font-family: Redressed, cursive;
+  color: #fff;
+  text-decoration: none;
+}
+
+.search-statement {
+  font-family: "Signika Negative", sans-serif;
+  color: #fff;
+  font-size: 46px;
+  margin: 100px auto 0;
+}
+
+.searchbar {
+  border-radius: 20px;
+  padding: 15px;
+  margin-top: 70px;
+  margin-bottom: 70px;
+  border: none;
+  font-size: 16px;
+}
+
+.search-button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  background-color: rgb(37, 37, 142, 85%);
+  font-size: 16px;
+}
+
+.macrochart {
+  height: 100px;
+  object-fit: scale-down;
+}
+
+.groceries {
+  height: 100px;
+  object-fit: scale-down;
+}
+
+.diary {
+  height: 100px;
+  padding-top: 10px;
+  object-fit: scale-down;
+}
+
+.calendar {
+  height: 100px;
+  width: 160px;
+  object-fit: scale-down;
+}
+
+.subtitle {
+  font-size: 22px;
+}
+
+.description {
+  font-size: 15px;
+}
+
+.nutrition-image {
+  width: 400px;
+  border-radius: 30px;
+  filter: brightness(90%);
+  margin-bottom: 40px;
+}
+
+.iphone {
+  width: 290px;
+  height: 470px;
+}
+
+.social-media {
+  width: 45px;
+  height: 40px;
+  border-radius: 100px;
+}
+
+@media (min-width: 1290px) {
+  .image-background {
+    height: 850px;
+  }
+}

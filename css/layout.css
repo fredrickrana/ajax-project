@@ -1,0 +1,21 @@
+.container {
+  max-width: 100%;
+  margin: auto;
+}
+
+.row {
+  display: flex;
+}
+
+.column-full {
+  flex-basis: 100%;
+}
+
+.column-half {
+  flex-basis: 50%;
+}
+
+.width-90 {
+  width: 90%;
+  margin: auto;
+}
