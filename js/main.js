@@ -29,6 +29,19 @@ function viewSwap() {
   }
 }
 
+function carousel() {
+  var $currentImage = $applicationImages.length - 1;
+  for (var i = 0; i < $applicationImages.length; i++) {
+    if ($device.getAttribute('src') === $applicationImages[$currentImage]) {
+      $device.setAttribute('src', $applicationImages[i]);
+      return;
+    } else if ($device.getAttribute('src') === $applicationImages[i]) {
+      $device.setAttribute('src', $applicationImages[i + 1]);
+      return;
+    }
+  }
+}
+
 function search(event) {
   event.preventDefault();
   var $foodSearch = $searchBar.value;
@@ -105,17 +118,4 @@ function apiSearch(foodSearch) {
   });
   xhr.open('GET', originalUrl);
   xhr.send();
-}
-
-function carousel() {
-  var $currentImage = $applicationImages.length - 1;
-  for (var i = 0; i < $applicationImages.length; i++) {
-    if ($device.getAttribute('src') === $applicationImages[$currentImage]) {
-      $device.setAttribute('src', $applicationImages[i]);
-      return;
-    } else if ($device.getAttribute('src') === $applicationImages[i]) {
-      $device.setAttribute('src', $applicationImages[i + 1]);
-      return;
-    }
-  }
 }
