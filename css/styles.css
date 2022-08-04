@@ -1,0 +1,225 @@
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.header-background {
+  background-color: #167daa;
+}
+
+.black-background {
+  background-color: #000;
+}
+
+.silver-background {
+  background-color: #f6f6f6;
+}
+
+.image-background {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.1)), url("https://blog.bonsecours.com/wp-content/uploads/2020/01/BSC_HealthyPlate_1200x628_Revised-1200x610.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-width: 100%;
+  height: auto;
+}
+
+.padding-inline-0 {
+  padding-inline-start: 0;
+}
+
+.padding-10 {
+  padding: 10px 0;
+}
+
+.padding-20 {
+  padding: 0 20px;
+}
+
+.padding-30 {
+  padding: 30px 0;
+}
+
+.footer-padding {
+  padding: 15px 0;
+}
+
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+.margin-100 {
+  margin: 0 0 100px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.center {
+  text-align: center;
+  justify-content: center;
+}
+
+.align-items {
+  align-items: center;
+}
+
+.logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 100px;
+  margin: 0 10px;
+}
+
+.title {
+  font-size: 55px;
+  font-family: Redressed, cursive;
+  color: #fff;
+  text-decoration: none;
+}
+
+li {
+  display: inline-block;
+}
+
+.search-statement {
+  font-family: "Signika Negative", sans-serif;
+  color: #fff;
+  font-size: 46px;
+  margin: 100px auto 0;
+}
+
+.search-bar {
+  border-radius: 20px;
+  padding: 15px;
+  margin-top: 70px;
+  margin-bottom: 70px;
+  border: rgb(0, 28, 111) solid 3px;
+  font-size: 16px;
+  width: 40%;
+  transition: width 2s;
+}
+
+.search-bar:focus {
+  width: 70%;
+}
+
+.search-button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  background-color: rgb(37, 37, 142, 85%);
+  font-size: 16px;
+  transition: background-color 1s;
+}
+
+.search-button:hover {
+  background-color: rgb(0, 0, 88);
+}
+
+.macrochart {
+  height: 100px;
+  object-fit: scale-down;
+}
+
+.groceries {
+  height: 100px;
+  object-fit: scale-down;
+}
+
+.diary {
+  height: 100px;
+  padding-top: 10px;
+  object-fit: scale-down;
+}
+
+.calendar {
+  height: 100px;
+  width: 160px;
+  object-fit: scale-down;
+}
+
+.subtitle {
+  font-size: 22px;
+}
+
+.description {
+  font-size: 15px;
+}
+
+.nutrition-image {
+  width: 400px;
+  border-radius: 30px;
+  filter: brightness(90%);
+  margin-bottom: 40px;
+}
+
+.application-image {
+  box-shadow: 0 2px 8px rgba(118, 114, 114, 15%);
+  margin: 0 0 50px;
+}
+
+.social-media {
+  width: 45px;
+  height: 40px;
+  border-radius: 100px;
+}
+
+.searched-image {
+  width: 200px;
+  height: 200px;
+}
+
+.food-card {
+  border: #000 solid 2px;
+  border-radius: 20px;
+  margin: 5px;
+  padding: 20px;
+  box-shadow: 5px 5px 10px rgb(75, 67, 67);
+}
+
+.article {
+  text-decoration: none;
+  margin-block-start: -5px;
+}
+
+.article-title {
+  color: #000;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.article-image {
+  width: 450px;
+  height: 270px;
+  border-radius: 30px;
+  box-shadow: 5px 5px 10px rgba(118, 114, 114);
+}
+
+.hidden {
+  display: none;
+}
+
+.style-none {
+  list-style: none;
+}
+
+@media (max-width: 400px) {
+  .padding-20 {
+    padding: 0;
+  }
+}
+
+@media (min-width: 1290px) {
+  .image-background {
+    height: 650px;
+  }
+
+  .search-statement {
+    font-size: 54px;
+  }
+}

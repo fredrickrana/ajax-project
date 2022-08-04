@@ -8,11 +8,119 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Redressed&family=Signika+Negative:wght@600&family=Unna:wght@700&display=swap"
+    rel="stylesheet">
 </head>
 <body>
   <header>
+    <div class="container header-background padding-10">
+      <div class="row align-items">
+        <div class="column-full">
+          <img src="images/MiMacLogo.png" alt="logo" class="logo">
+          <a href="#" class="title">MicMac</a>
+        </div>
+      </div>
+    </div>
   </header>
   <main>
+    <div data-view="home-page">
+      <div class="container image-background">
+        <div class="row">
+          <div class="column-full margin-100 text-center">
+            <h1 class="search-statement">Find Out the Nutrition Facts of Your Meals</h1>
+            <input type="search" name="food-search" class="search-bar" placeholder="Nutrition Analysis" size="60">
+            <button class="search-button">Search</button>
+          </div>
+        </div>
+      </div>
+      <div class="container silver-background">
+        <div class="row width-90 text-center flex-wrap padding-30">
+          <div class="column-half padding-20">
+            <img src="images/macrochart.png" alt="macrochart" class="macrochart">
+            <h2 class="subtitle">Start with the Macros</h2>
+            <p class="description">Take the data of your food's protein, carbohydrates, or fat</p>
+          </div>
+          <div class="column-half padding-20">
+            <img src="images/groceries.png" alt="groceries" class="groceries">
+            <h2 class="subtitle">Massive Food Data</h2>
+            <p class="description">Search from thousands of foods by name</p>
+          </div>
+          <div class="column-half padding-20">
+            <img src="images/diary.png" alt="diary" class="diary">
+            <h2 class="subtitle">Learn. Track. Improve</h2>
+            <p class="description">Understand what you're eating and take control of your health</p>
+          </div>
+          <div class="column-half padding-20">
+            <img src="images/calendar.png" alt="calendar" class="calendar">
+            <h2 class="subtitle">Stay Motivated</h2>
+            <p class="description">Having a food diary helps you understand your habits and propels you forward in reaching your goals</p>
+          </div>
+        </div>
+        <div class="row width-90 center flex-wrap">
+          <div class="column-one-half">
+            <img src="images/iPhoneHomepage.png" alt="iphone-homepage" class="application-image">
+          </div>
+          <div class="column-one-half">
+            <a target="_blank" href="https://blog.myfitnesspal.com/how-to-stay-healthy-and-on-track-with-your-health-goals-on-vacation/" class="article">
+              <img src="https://media.istockphoto.com/photos/group-of-multiethnic-family-friends-enjoy-dinner-party-together-on-picture-id1286861793?k=20&m=1286861793&s=612x612&w=0&h=1s1mcHcR0Y7pvvz1cQ33Zs4SmWPEaRLa9N-_jnEbIZo=" alt="vacation-dinner" class="article-image">
+              <p class="article-title">Blog: How to Stay on Track With Your Health Goals on Vacation</p>
+            </a>
+            <a target="_blank"
+              href="https://blog.myfitnesspal.com/6-very-healthy-foods-you-should-be-eating-regularly/" class="article">
+              <img
+                src="https://blog.myfitnesspal.com/wp-content/uploads/2019/03/6-Very-Healthy-Foods-You-Should-be-Eating-Regularly--752x472.jpg" class="article-image">
+              <p class="article-title">Blog: 11 Very Healthy Foods You Should be Eating Regularly</p>
+            </a>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="column-full margin-top-20">
+            <h1>Good health starts with what you eat.</h1>
+            <img src="https://www.cdc.gov/diabetes/images/managing/food-labels-SM.jpg?_=10714" alt="nutritionimage" class="nutrition-image">
+          </div>
+        </div>
+      </div>
+      <div class="container black-background">
+        <div class="row text-center footer-padding">
+          <div class="column-full">
+            <a target="_blank" href="https://github.com/fredrickrana">
+              <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="github" class="social-media">
+            </a>
+            <a target="_blank" href="www.linkedin.com/in/fredrick-rana">
+              <img src="https://indyme.com/wp-content/uploads/2017/07/LinkedIn-Icon.png" alt="linkedin" class="social-media">
+            </a>
+            <a target="_blank" href="https://forms.gle/hZ4B2duc9kgRTdJM8">
+              <img src="https://p.kindpng.com/picc/s/225-2259351_report-icon-circle-flat-google-forms-logo-png.png" alt="google-form" class="social-media">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div data-view="searched-results" class="container hidden">
+      <div class="row">
+        <div class="column-full">
+          <h2 class="search-description"></h2>
+        </div>
+      </div>
+      <div class="row center width-95">
+        <ul id="searched-results" class="padding-inline-0">
+          <!-- <li class="style-none">
+            <div class="food-card">
+              <h2>Apple</h2>
+              <img
+                src="https://media.istockphoto.com/photos/red-apple-with-leaf-picture-id683494078?k=20&m=683494078&s=612x612&w=0&h=MtHUc7vTTZGAAP4-o87T6v57g1KaJP5Vd_oh7LwQca8="
+                alt="apple" class="searched-image">
+              <p>Per Serving - 100g</p>
+              <h3>52 kcal</h3>
+              <p>Protein: 0g</p>
+              <p>Fat: 0g</p>
+              <p>Carb: 13g</p>
+            </div>
+          </li> -->
+        </ul>
+      </div>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
