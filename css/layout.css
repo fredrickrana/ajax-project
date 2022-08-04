@@ -11,11 +11,30 @@
   flex-basis: 100%;
 }
 
+.column-one-half {
+  flex-basis: 50%;
+}
+
 .column-half {
   flex-basis: 50%;
+}
+
+.column-one-fourth {
+  flex-basis: 25%;
 }
 
 .width-90 {
   width: 90%;
   margin: auto;
+}
+
+.width-95 {
+  width: 95%;
+  margin: auto;
+}
+
+@media (min-width: 1290px) {
+  .column-half {
+    flex-basis: 25%;
+  }
 }
