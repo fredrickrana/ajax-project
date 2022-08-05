@@ -1,3 +1,4 @@
+// var $homePage = document.querySelector('div[data-view = "home-page"]');
 var $title = document.querySelector('.title');
 var $searchBar = document.querySelector('.search-bar');
 var $searchButton = document.querySelector('.search-button');
@@ -9,9 +10,13 @@ var $searchDescription = document.querySelector('.search-description');
 var $ul = document.querySelector('#searched-results');
 var $applicationImages = ['images/iPhoneHomepage.png', 'images/iPhoneSalmon.png', 'images/iPhoneSpaghetti.png'];
 var $device = document.querySelector('.application-image');
+var $clickHereButton = document.querySelector('.click-here-button');
+var $foodInformation = document.querySelector('div[data-view = "food-information"]');
+var $foodDetails = document.querySelector('.food-details');
 setInterval(carousel, 5000);
 
 function goToHomePage(event) {
+  resetSearch();
   data.view = 'home-page';
   viewSwap();
 }
@@ -22,10 +27,16 @@ function viewSwap() {
     $imageBackground.className = 'container image-background';
     $silverBackground.className = 'container silver-background';
     $blackBackground.className = 'container black-background';
+    $searchResults.className = 'hidden';
+    $foodInformation.className = 'hidden';
   } else if (data.view === 'searched-results') {
+    $searchResults.className = 'container';
     $silverBackground.className = 'hidden';
     $blackBackground.className = 'hidden';
-    $searchResults.className = 'container';
+    $foodInformation.className = 'hidden';
+  } else if (data.view === 'food-information') {
+    $foodInformation.className = 'container';
+    $searchResults.className = 'hidden';
   }
 }
 
@@ -50,6 +61,7 @@ function search(event) {
   }
   resetSearch();
   apiSearch($foodSearch);
+  data.search = $foodSearch;
   $searchBar.value = '';
   $searchDescription.textContent = 'Search results for ' + '"' + $foodSearch + '"';
   data.view = 'searched-results';
@@ -78,7 +90,7 @@ function apiSearch(foodSearch) {
       var $foodName = $results[i].food.label;
       var $imageOfFood = $results[i].food.image;
       var $imageSubstitute = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1Gz22F4NcRxJNwsNyqzzU_aWXvAAmZtWbuw&usqp=CAU';
-      var $calories = Math.floor($results[i].food.nutrients.ENERC_KCAL) + ' grams';
+      var $calories = Math.floor($results[i].food.nutrients.ENERC_KCAL);
       var $protein = Math.floor($results[i].food.nutrients.PROCNT) + ' grams';
       var $fat = Math.floor($results[i].food.nutrients.FAT) + ' grams';
       var $carbohydrate = Math.floor($results[i].food.nutrients.CHOCDF) + ' grams';
@@ -119,3 +131,17 @@ function apiSearch(foodSearch) {
   xhr.open('GET', originalUrl);
   xhr.send();
 }
+
+function showMicronutrients(event) {
+  var $imageOne = document.querySelector('.searched-image');
+  var $image = $imageOne.getAttribute('src');
+  data.view = 'food-information';
+  viewSwap();
+  resetSearch();
+  var $li2 = document.createElement('div');
+  var $newImage = document.createElement('img');
+  $newImage.setAttribute('src', $image);
+  $li2.appendChild($newImage);
+  $foodDetails.appendChild($li2);
+}
+$clickHereButton.addEventListener('click', showMicronutrients);
