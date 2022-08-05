@@ -109,90 +109,125 @@
         <ul id="searched-results" class="padding-inline-0">
           <!-- <li class="style-none">
             <div class="food-card">
-              <h2>Apple</h2>
+              <h2></h2>
               <img
-                src="https://media.istockphoto.com/photos/red-apple-with-leaf-picture-id683494078?k=20&m=683494078&s=612x612&w=0&h=MtHUc7vTTZGAAP4-o87T6v57g1KaJP5Vd_oh7LwQca8="
-                alt="apple" class="searched-image">
-              <p>Per Serving - 100g</p>
-              <h3>52 kcal</h3>
-              <p>Protein: 0g</p>
-              <p>Fat: 0g</p>
-              <p>Carb: 13g</p>
+                src="" class="searched-image">
+              <p></p>
+              <h3></h3>
+              <p></p>
+              <p></p>
+              <p></p>
             </div>
           </li> -->
         </ul>
       </div>
     </div>
     <div data-view="food-information" class="container hidden">
-      <div class="row flex-wrap width-90">
-        <div class="food-details">
-          <img src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=768,574" alt="food-detail-image" class="food-detail-image">
+      <div class="row flex-wrap width-90 justify-center">
+        <div class="column-half">
+          <img src="" alt="searched-food-image" class="food-detail-image">
         </div>
-        <div class="column-half border text-left margin-top-20">
+        <div class="column-half border text-left margin-top-20 padding-5 box-shadow">
           <h1 class="underline-15">Nutrition Facts</h1>
           <table class="width-90">
             <thead>
               <tr>
-                <th class="font-32">Calories</th>
-                <td>1000</td>
+                <th id="amount-per-serving"></th>
+                <td></td>
+              </tr>
+              <tr class="font-32">
+                <th id="calories"></th>
+                <td id="calories-value"></td>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th>Total Fat 1.1g</th>
-                <td>2%</td>
+                <th></th>
+                <td id="daily-value"></td>
               </tr>
               <tr>
-                <th>Saturated Fat 0.3g</th>
-                <td>2%</td>
+                <th id="total-fat"></th>
+                <td id="percentage-total-fat"></td>
               </tr>
               <tr>
-                <th>Trans Fat </th>
+                <th id="saturated-fat"></th>
+                <td id="percentage-saturated-fat"></td>
+              </tr>
+              <tr>
+                <th id="trans-fat"></th>
                 <td></td>
               </tr>
               <tr>
-                <th>Cholesterol 0 mg</th>
-                <td>0%</td>
+                <th id="cholesterol"></th>
+                <td id="percentage-cholesterol"></td>
               </tr>
               <tr>
-                <th>Sodium 2 mg</th>
-                <td>0%</td>
+                <th id="sodium"></th>
+                <td id="percentage-sodium"></td>
               </tr>
               <tr>
-                <th>Total Carbohydrate 154.7 g</th>
-                <td>52%</td>
+                <th id="total-carbohydrate"></th>
+                <td id="percentage-total-carb"></td>
               </tr>
               <tr>
-                <th>Dietary Fiber </th>
+                <th id="fiber"></th>
+                <td id="percentage-fiber"></td>
+              </tr>
+              <tr>
+                <th id="total-sugar"></th>
                 <td></td>
               </tr>
               <tr>
-                <th>Total Sugars </th>
+                <th id="added-sugars"></th>
                 <td></td>
               </tr>
               <tr>
-                <th>Includes - Added Sugars</th>
-                <td></td>
+                <th id="protein"></th>
+                <td id="percentage-protein"></td>
               </tr>
               <tr>
-                <th>Protein 12.9 g</th>
-                <td>26%</td>
+                <th id="vitaminD"></th>
+                <td id="percentage-vitamin-D"></td>
               </tr>
               <tr>
-                <th>Vitamin D 0 µg</th>
-                <td>0%</td>
+                <th id="calcium"></th>
+                <td id="percentage-calcium"></td>
               </tr>
               <tr>
-                <th>Calcium 17.6 mg</th>
-                <td>2%</td>
+                <th id="iron"></th>
+                <td id="percentage-iron"></td>
               </tr>
               <tr>
-                <th>Iron 1.6 mg</th>
-                <td>9%</td>
+                <th id="potassium"></th>
+                <td id="percentage-potassium"></td>
               </tr>
               <tr>
-                <th>Potassium 167.7 mg</th>
-                <td>4%</td>
+                <th></th>
+                <td id="percent-values" class="font-12"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row margin-table">
+        <div class="column-full">
+          <table class="margin-auto border box-shadow">
+            <thead>
+              <tr>
+                <th>Qty</th>
+                <th>Unit</th>
+                <th>Food</th>
+                <th>Calories</th>
+                <th>Weight</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td id="unit"></td>
+                <td id="food"></td>
+                <td id="energy"></td>
+                <td id="weight"></td>
               </tr>
             </tbody>
           </table>

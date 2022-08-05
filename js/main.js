@@ -1,4 +1,3 @@
-// var $homePage = document.querySelector('div[data-view = "home-page"]');
 var $title = document.querySelector('.title');
 var $searchBar = document.querySelector('.search-bar');
 var $searchButton = document.querySelector('.search-button');
@@ -12,7 +11,6 @@ var $applicationImages = ['images/iPhoneHomepage.png', 'images/iPhoneSalmon.png'
 var $device = document.querySelector('.application-image');
 var $clickHereButton = document.querySelector('.click-here-button');
 var $foodInformation = document.querySelector('div[data-view = "food-information"]');
-var $foodDetails = document.querySelector('.food-details');
 setInterval(carousel, 5000);
 
 function goToHomePage(event) {
@@ -59,9 +57,9 @@ function search(event) {
   if ($foodSearch === '') {
     return;
   }
+  data.search = $foodSearch;
   resetSearch();
   apiSearch($foodSearch);
-  data.search = $foodSearch;
   $searchBar.value = '';
   $searchDescription.textContent = 'Search results for ' + '"' + $foodSearch + '"';
   data.view = 'searched-results';
@@ -132,16 +130,120 @@ function apiSearch(foodSearch) {
   xhr.send();
 }
 
-function showMicronutrients(event) {
-  var $imageOne = document.querySelector('.searched-image');
-  var $image = $imageOne.getAttribute('src');
+// NUTRITION FACTS TABLE
+var $foodDetailImage = document.querySelector('.food-detail-image');
+var $amountPerServing = document.querySelector('#amount-per-serving');
+var $calories = document.querySelector('#calories');
+var $caloriesValue = document.querySelector('#calories-value');
+var $dailyValue = document.querySelector('#daily-value');
+var $totalFat = document.querySelector('#total-fat');
+var $percentageTotalFat = document.querySelector('#percentage-total-fat');
+var $saturatedFat = document.querySelector('#saturated-fat');
+var $percentageSaturatedFat = document.querySelector('#percentage-saturated-fat');
+
+var $transFat = document.querySelector('#trans-fat');
+
+var $cholesterol = document.querySelector('#cholesterol');
+var $percentageCholesterol = document.querySelector('#percentage-cholesterol');
+var $sodium = document.querySelector('#sodium');
+var $percentageSodium = document.querySelector('#percentage-sodium');
+var $totalCarb = document.querySelector('#total-carbohydrate');
+var $percentageTotalCarb = document.querySelector('#percentage-total-carb');
+var $fiber = document.querySelector('#fiber');
+var $percentageFiber = document.querySelector('#percentage-fiber');
+var $totalSugar = document.querySelector('#total-sugar');
+
+var $addedSugars = document.querySelector('#added-sugars');
+
+var $protein = document.querySelector('#protein');
+var $percentageProtein = document.querySelector('#percentage-protein');
+var $vitaminD = document.querySelector('#vitaminD');
+var $percentageVitaminD = document.querySelector('#percentage-vitamin-D');
+var $calcium = document.querySelector('#calcium');
+var $percentageCalcium = document.querySelector('#percentage-calcium');
+var $iron = document.querySelector('#iron');
+var $percentageIron = document.querySelector('#percentage-iron');
+var $potassium = document.querySelector('#potassium');
+var $percentagePotassium = document.querySelector('#percentage-potassium');
+var $percentValues = document.querySelector('#percent-values');
+
+var $unit = document.querySelector('#unit');
+var $food = document.querySelector('#food');
+var $energy = document.querySelector('#energy');
+var $weight = document.querySelector('#weight');
+
+function showNutritionLabel(event) {
+  var $searchedImage = document.querySelector('.searched-image');
+  var $imageURL = $searchedImage.getAttribute('src');
   data.view = 'food-information';
   viewSwap();
   resetSearch();
-  var $li2 = document.createElement('div');
-  var $newImage = document.createElement('img');
-  $newImage.setAttribute('src', $image);
-  $li2.appendChild($newImage);
-  $foodDetails.appendChild($li2);
+  $foodDetailImage.setAttribute('src', $imageURL);
+  var foodSearch = data.search;
+  var xhr = new XMLHttpRequest();
+  xhr.responseType = 'json';
+  var originalUrl = 'https://api.edamam.com/api/nutrition-data?app_id=3bb26765&app_key=2b1cec07263a9c58acf5631de5d1be8f&nutrition-type=logging&ingr=';
+  originalUrl += foodSearch;
+
+  xhr.addEventListener('load', function () {
+    var $results = xhr.response;
+
+    $amountPerServing.textContent = 'Amount Per Serving';
+
+    $calories.textContent = 'Calories ';
+    $caloriesValue.textContent = $results.calories;
+
+    $dailyValue.textContent = '%Daily Value*';
+
+    $totalFat.textContent = 'Total Fat ' + Math.round($results.totalNutrients.FAT.quantity * 10) / 10 + $results.totalNutrients.FAT.unit;
+    $percentageTotalFat.textContent = Math.round($results.totalDaily.FAT.quantity) + '%';
+
+    $saturatedFat.textContent = 'Saturated Fat ' + Math.round($results.totalNutrients.FASAT.quantity * 10) / 10 + $results.totalNutrients.FASAT.unit;
+    $percentageSaturatedFat.textContent = Math.round($results.totalDaily.FASAT.quantity) + '%';
+
+    $transFat.textContent = 'Trans Fat -';
+
+    $cholesterol.textContent = 'Cholesterol ' + Math.round($results.totalNutrients.CHOLE.quantity * 10) / 10 + $results.totalNutrients.CHOLE.unit;
+    $percentageCholesterol.textContent = Math.round($results.totalDaily.CHOLE.quantity) + '%';
+
+    $sodium.textContent = 'Sodium ' + Math.round($results.totalNutrients.NA.quantity * 10) / 10 + $results.totalNutrients.NA.unit;
+    $percentageSodium.textContent = Math.round($results.totalDaily.NA.quantity) + '%';
+
+    $totalCarb.textContent = 'Total Carbohydrate ' + Math.round($results.totalNutrients.CHOCDF.quantity * 10) / 10 + $results.totalNutrients.CHOCDF.unit;
+    $percentageTotalCarb.textContent = Math.round($results.totalDaily.CHOCDF.quantity) + '%';
+
+    $fiber.textContent = 'Dietary Fiber ' + Math.round($results.totalNutrients.FIBTG.quantity * 10) / 10 + $results.totalNutrients.FIBTG.unit;
+    $percentageFiber.textContent = Math.round($results.totalDaily.FIBTG.quantity) + '%';
+
+    $totalSugar.textContent = 'Total Sugars ' + Math.round($results.totalNutrients.SUGAR.quantity * 10) / 10 + $results.totalNutrients.SUGAR.unit;
+
+    $addedSugars.textContent = 'Includes - Added Sugars';
+
+    $protein.textContent = 'Protein ' + Math.round($results.totalNutrients.PROCNT.quantity * 10) / 10 + $results.totalNutrients.PROCNT.unit;
+    $percentageProtein.textContent = Math.round($results.totalDaily.PROCNT.quantity) + '%';
+
+    $vitaminD.textContent = 'Vitamin D ' + Math.round($results.totalNutrients.VITD.quantity * 10) / 10 + $results.totalNutrients.VITD.unit;
+    $percentageVitaminD.textContent = Math.round($results.totalDaily.VITD.quantity) + '%';
+
+    $calcium.textContent = 'Calcium ' + Math.round($results.totalNutrients.CA.quantity * 10) / 10 + $results.totalNutrients.CA.unit;
+    $percentageCalcium.textContent = Math.round($results.totalDaily.CA.quantity) + '%';
+
+    $iron.textContent = 'Iron ' + Math.round($results.totalNutrients.FE.quantity * 10) / 10 + $results.totalNutrients.FE.unit;
+    $percentageIron.textContent = Math.round($results.totalDaily.FE.quantity) + '%';
+
+    $potassium.textContent = 'Potassium ' + Math.round($results.totalNutrients.K.quantity * 10) / 10 + $results.totalNutrients.K.unit;
+    $percentagePotassium.textContent = Math.round($results.totalDaily.K.quantity) + '%';
+
+    $percentValues.textContent = '* Percent Daily Values are based on a 2000 calorie diet';
+
+    $unit.textContent = 'gram';
+    $food.textContent = data.search;
+    $energy.textContent = $results.calories + ' kcal';
+    $weight.textContent = Math.round($results.totalWeight * 10) / 10 + ' g';
+
+  });
+  xhr.open('GET', originalUrl);
+  xhr.send();
+
 }
-$clickHereButton.addEventListener('click', showMicronutrients);
+$clickHereButton.addEventListener('click', showNutritionLabel);

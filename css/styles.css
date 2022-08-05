@@ -30,6 +30,10 @@
   padding: 10px 0;
 }
 
+.padding-5 {
+  padding: 5px;
+}
+
 .padding-20 {
   padding: 0 20px;
 }
@@ -42,12 +46,20 @@
   padding: 15px 0;
 }
 
+.margin-auto {
+  margin: auto;
+}
+
 .margin-top-20 {
   margin-top: 20px;
 }
 
 .margin-100 {
   margin: 0 0 100px;
+}
+
+.margin-table {
+  margin: 35px 0 200px;
 }
 
 .text-center {
@@ -251,16 +263,16 @@ li:hover {
   border-bottom: #000 15px solid;
 }
 
-/* .underline-8 {
-  border-bottom: #000 5px solid;
-} */
-
 .border {
   border: #000 3px solid;
 }
 
 .font-32 {
   font-size: 32px;
+}
+
+.font-12 {
+  font-size: 12px;
 }
 
 .text-left {
@@ -271,12 +283,22 @@ table {
   width: 300px;
 }
 
+th {
+  border-bottom: #000 3px solid;
+}
+
 td {
   text-align: right;
+  border-bottom: #000 3px solid;
 }
 
 .food-detail-image {
   width: 500px;
   height: 500px;
   margin: 50px;
+  border-radius: 10px;
+}
+
+.box-shadow {
+  box-shadow: 5px 8px 8px rgba(118, 114, 114, 55%);
 }
