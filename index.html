@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AJAX Project</title>
+  <title>MicMac</title>
   <link rel="icon" href="images/favicon.ico">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
@@ -14,7 +14,7 @@
 </head>
 <body>
   <header>
-    <div class="container header-background padding-10">
+    <div class="container header-background padding-top-10">
       <div class="row align-items">
         <div class="column-full">
           <img src="images/MiMacLogo.png" alt="logo" class="logo">
@@ -81,44 +81,161 @@
           </div>
         </div>
       </div>
-      <div class="container black-background">
-        <div class="row text-center footer-padding">
-          <div class="column-full">
-            <a target="_blank" href="https://github.com/fredrickrana">
-              <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="github" class="social-media">
-            </a>
-            <a target="_blank" href="www.linkedin.com/in/fredrick-rana">
-              <img src="https://indyme.com/wp-content/uploads/2017/07/LinkedIn-Icon.png" alt="linkedin" class="social-media">
-            </a>
-            <a target="_blank" href="https://forms.gle/hZ4B2duc9kgRTdJM8">
-              <img src="https://p.kindpng.com/picc/s/225-2259351_report-icon-circle-flat-google-forms-logo-png.png" alt="google-form" class="social-media">
-            </a>
-          </div>
-        </div>
-      </div>
     </div>
     <div data-view="searched-results" class="container hidden">
       <div class="row">
-        <div class="column-full">
+        <div class="column-full text-center">
           <h2 class="search-description"></h2>
+          <h3 class="inline-block padding-20">Need more information?</h3>
+          <button class="click-here-button">Click Here</button>
         </div>
       </div>
       <div class="row center width-95">
         <ul id="searched-results" class="padding-inline-0">
           <!-- <li class="style-none">
             <div class="food-card">
-              <h2>Apple</h2>
+              <h2></h2>
               <img
-                src="https://media.istockphoto.com/photos/red-apple-with-leaf-picture-id683494078?k=20&m=683494078&s=612x612&w=0&h=MtHUc7vTTZGAAP4-o87T6v57g1KaJP5Vd_oh7LwQca8="
-                alt="apple" class="searched-image">
-              <p>Per Serving - 100g</p>
-              <h3>52 kcal</h3>
-              <p>Protein: 0g</p>
-              <p>Fat: 0g</p>
-              <p>Carb: 13g</p>
+                src="" class="searched-image">
+              <p></p>
+              <h3></h3>
+              <p></p>
+              <p></p>
+              <p></p>
             </div>
           </li> -->
         </ul>
+      </div>
+    </div>
+    <div data-view="food-information" class="container hidden">
+      <div class="row flex-wrap width-90 justify-center">
+        <div class="column-half">
+          <img src="" alt="searched-food-image" class="food-detail-image">
+        </div>
+        <div class="column-half border text-left margin-top-20 padding-5 box-shadow">
+          <h1 class="underline-15">Nutrition Facts</h1>
+          <table class="width-90">
+            <thead>
+              <tr>
+                <th id="amount-per-serving"></th>
+                <td></td>
+              </tr>
+              <tr class="font-32">
+                <th id="calories"></th>
+                <td id="calories-value"></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th></th>
+                <td id="daily-value"></td>
+              </tr>
+              <tr>
+                <th id="total-fat"></th>
+                <td id="percentage-total-fat"></td>
+              </tr>
+              <tr>
+                <th id="saturated-fat"></th>
+                <td id="percentage-saturated-fat"></td>
+              </tr>
+              <tr>
+                <th id="trans-fat"></th>
+                <td></td>
+              </tr>
+              <tr>
+                <th id="cholesterol"></th>
+                <td id="percentage-cholesterol"></td>
+              </tr>
+              <tr>
+                <th id="sodium"></th>
+                <td id="percentage-sodium"></td>
+              </tr>
+              <tr>
+                <th id="total-carbohydrate"></th>
+                <td id="percentage-total-carb"></td>
+              </tr>
+              <tr>
+                <th id="fiber"></th>
+                <td id="percentage-fiber"></td>
+              </tr>
+              <tr>
+                <th id="total-sugar"></th>
+                <td></td>
+              </tr>
+              <tr>
+                <th id="added-sugars"></th>
+                <td></td>
+              </tr>
+              <tr>
+                <th id="protein"></th>
+                <td id="percentage-protein"></td>
+              </tr>
+              <tr>
+                <th id="vitaminD"></th>
+                <td id="percentage-vitamin-D"></td>
+              </tr>
+              <tr>
+                <th id="calcium"></th>
+                <td id="percentage-calcium"></td>
+              </tr>
+              <tr>
+                <th id="iron"></th>
+                <td id="percentage-iron"></td>
+              </tr>
+              <tr>
+                <th id="potassium"></th>
+                <td id="percentage-potassium"></td>
+              </tr>
+              <tr>
+                <th></th>
+                <td id="percent-values" class="font-12"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row margin-table">
+        <div class="column-full">
+          <table class="margin-auto border box-shadow">
+            <thead>
+              <tr>
+                <th>Qty</th>
+                <th>Unit</th>
+                <th>Food</th>
+                <th>Calories</th>
+                <th>Weight</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td id="unit"></td>
+                <td id="food"></td>
+                <td id="energy"></td>
+                <td id="weight"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div id="connect">
+      <div class="container black-background">
+        <div class="row text-center footer-padding">
+          <div class="column-full">
+            <a target="_blank" href="https://github.com/fredrickrana" class="padding-15">
+              <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="github"
+                class="social-media">
+            </a>
+            <a target="_blank" href="https://www.linkedin.com/in/fredrick-rana" class="padding-15">
+              <img src="https://indyme.com/wp-content/uploads/2017/07/LinkedIn-Icon.png" alt="linkedin" class="social-media">
+            </a>
+            <a target="_blank" href="https://forms.gle/hZ4B2duc9kgRTdJM8" class="padding-15">
+              <img src="https://p.kindpng.com/picc/s/225-2259351_report-icon-circle-flat-google-forms-logo-png.png"
+                alt="google-form" class="social-media">
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </main>

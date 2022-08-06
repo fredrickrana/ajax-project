@@ -26,8 +26,16 @@
   padding-inline-start: 0;
 }
 
-.padding-10 {
+.padding-top-10 {
   padding: 10px 0;
+}
+
+.padding-5 {
+  padding: 5px;
+}
+
+.padding-15 {
+  padding: 15px;
 }
 
 .padding-20 {
@@ -42,12 +50,20 @@
   padding: 15px 0;
 }
 
+.margin-auto {
+  margin: auto;
+}
+
 .margin-top-20 {
   margin-top: 20px;
 }
 
 .margin-100 {
   margin: 0 0 100px;
+}
+
+.margin-table {
+  margin: 35px 0 200px;
 }
 
 .text-center {
@@ -83,6 +99,11 @@
 
 li {
   display: inline-block;
+  transition: transform 0.5s;
+}
+
+li:hover {
+  transform: scale(1.1);
 }
 
 .search-statement {
@@ -180,6 +201,7 @@ li {
   margin: 5px;
   padding: 20px;
   box-shadow: 5px 5px 10px rgb(75, 67, 67);
+  background-color: #fff;
 }
 
 .article {
@@ -200,8 +222,26 @@ li {
   box-shadow: 5px 5px 10px rgba(118, 114, 114);
 }
 
+.click-here-button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  background-color: rgb(37, 37, 142, 85%);
+  font-size: 12px;
+  transition: background-color 1s;
+}
+
+.click-here-button:hover {
+  background-color: rgb(0, 0, 88);
+}
+
 .hidden {
   display: none;
+}
+
+.inline-block {
+  display: inline-block;
 }
 
 .style-none {
@@ -222,4 +262,48 @@ li {
   .search-statement {
     font-size: 54px;
   }
+}
+
+.underline-15 {
+  border-bottom: #000 15px solid;
+}
+
+.border {
+  border: #000 3px solid;
+}
+
+.font-32 {
+  font-size: 32px;
+}
+
+.font-12 {
+  font-size: 12px;
+}
+
+.text-left {
+  text-align: left;
+}
+
+table {
+  width: 350px;
+}
+
+th {
+  border-bottom: #000 3px solid;
+}
+
+td {
+  text-align: right;
+  border-bottom: #000 3px solid;
+}
+
+.food-detail-image {
+  width: 450px;
+  height: 450px;
+  margin: 50px;
+  border-radius: 10px;
+}
+
+.box-shadow {
+  box-shadow: 5px 8px 8px rgba(118, 114, 114, 55%);
 }
