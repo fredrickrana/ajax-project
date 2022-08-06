@@ -26,12 +26,16 @@
   padding-inline-start: 0;
 }
 
-.padding-10 {
+.padding-top-10 {
   padding: 10px 0;
 }
 
 .padding-5 {
   padding: 5px;
+}
+
+.padding-15 {
+  padding: 15px;
 }
 
 .padding-20 {
@@ -95,7 +99,7 @@
 
 li {
   display: inline-block;
-  transition: transform 3s;
+  transition: transform 0.5s;
 }
 
 li:hover {
@@ -197,6 +201,7 @@ li:hover {
   margin: 5px;
   padding: 20px;
   box-shadow: 5px 5px 10px rgb(75, 67, 67);
+  background-color: #fff;
 }
 
 .article {
@@ -280,7 +285,7 @@ li:hover {
 }
 
 table {
-  width: 300px;
+  width: 350px;
 }
 
 th {
@@ -293,8 +298,8 @@ td {
 }
 
 .food-detail-image {
-  width: 500px;
-  height: 500px;
+  width: 450px;
+  height: 450px;
   margin: 50px;
   border-radius: 10px;
 }

@@ -4,14 +4,13 @@ var $searchButton = document.querySelector('.search-button');
 var $searchResults = document.querySelector('div[data-view = "searched-results"]');
 var $imageBackground = document.querySelector('.image-background');
 var $silverBackground = document.querySelector('.silver-background');
-var $blackBackground = document.querySelector('.black-background');
 var $searchDescription = document.querySelector('.search-description');
 var $ul = document.querySelector('#searched-results');
 var $applicationImages = ['images/iPhoneHomepage.png', 'images/iPhoneSalmon.png', 'images/iPhoneSpaghetti.png'];
 var $device = document.querySelector('.application-image');
 var $clickHereButton = document.querySelector('.click-here-button');
 var $foodInformation = document.querySelector('div[data-view = "food-information"]');
-setInterval(carousel, 5000);
+setInterval(carousel, 4000);
 
 function goToHomePage(event) {
   resetSearch();
@@ -24,13 +23,11 @@ function viewSwap() {
   if (data.view === 'home-page') {
     $imageBackground.className = 'container image-background';
     $silverBackground.className = 'container silver-background';
-    $blackBackground.className = 'container black-background';
     $searchResults.className = 'hidden';
     $foodInformation.className = 'hidden';
   } else if (data.view === 'searched-results') {
     $searchResults.className = 'container';
     $silverBackground.className = 'hidden';
-    $blackBackground.className = 'hidden';
     $foodInformation.className = 'hidden';
   } else if (data.view === 'food-information') {
     $foodInformation.className = 'container';
@@ -140,9 +137,7 @@ var $totalFat = document.querySelector('#total-fat');
 var $percentageTotalFat = document.querySelector('#percentage-total-fat');
 var $saturatedFat = document.querySelector('#saturated-fat');
 var $percentageSaturatedFat = document.querySelector('#percentage-saturated-fat');
-
 var $transFat = document.querySelector('#trans-fat');
-
 var $cholesterol = document.querySelector('#cholesterol');
 var $percentageCholesterol = document.querySelector('#percentage-cholesterol');
 var $sodium = document.querySelector('#sodium');
@@ -152,9 +147,7 @@ var $percentageTotalCarb = document.querySelector('#percentage-total-carb');
 var $fiber = document.querySelector('#fiber');
 var $percentageFiber = document.querySelector('#percentage-fiber');
 var $totalSugar = document.querySelector('#total-sugar');
-
 var $addedSugars = document.querySelector('#added-sugars');
-
 var $protein = document.querySelector('#protein');
 var $percentageProtein = document.querySelector('#percentage-protein');
 var $vitaminD = document.querySelector('#vitaminD');
@@ -166,7 +159,6 @@ var $percentageIron = document.querySelector('#percentage-iron');
 var $potassium = document.querySelector('#potassium');
 var $percentagePotassium = document.querySelector('#percentage-potassium');
 var $percentValues = document.querySelector('#percent-values');
-
 var $unit = document.querySelector('#unit');
 var $food = document.querySelector('#food');
 var $energy = document.querySelector('#energy');
@@ -184,66 +176,120 @@ function showNutritionLabel(event) {
   xhr.responseType = 'json';
   var originalUrl = 'https://api.edamam.com/api/nutrition-data?app_id=3bb26765&app_key=2b1cec07263a9c58acf5631de5d1be8f&nutrition-type=logging&ingr=';
   originalUrl += foodSearch;
-
-  xhr.addEventListener('load', function () {
+  xhr.addEventListener('load', function renderNutritionLabel() {
     var $results = xhr.response;
 
     $amountPerServing.textContent = 'Amount Per Serving';
-
     $calories.textContent = 'Calories ';
     $caloriesValue.textContent = $results.calories;
-
     $dailyValue.textContent = '%Daily Value*';
-
     $totalFat.textContent = 'Total Fat ' + Math.round($results.totalNutrients.FAT.quantity * 10) / 10 + $results.totalNutrients.FAT.unit;
     $percentageTotalFat.textContent = Math.round($results.totalDaily.FAT.quantity) + '%';
 
-    $saturatedFat.textContent = 'Saturated Fat ' + Math.round($results.totalNutrients.FASAT.quantity * 10) / 10 + $results.totalNutrients.FASAT.unit;
-    $percentageSaturatedFat.textContent = Math.round($results.totalDaily.FASAT.quantity) + '%';
+    if ($results.totalNutrients.FASAT === undefined || $results.totalDaily.FASAT) {
+      $saturatedFat.className = 'hidden';
+      $percentageSaturatedFat.className = 'hidden';
+    } else {
+      $saturatedFat.className = '';
+      $percentageSaturatedFat.className = '';
+      $saturatedFat.textContent = 'Saturated Fat ' + Math.round($results.totalNutrients.FASAT.quantity * 10) / 10 + $results.totalNutrients.FASAT.unit;
+      $percentageSaturatedFat.textContent = Math.round($results.totalDaily.FASAT.quantity) + '%';
+    }
 
     $transFat.textContent = 'Trans Fat -';
 
-    $cholesterol.textContent = 'Cholesterol ' + Math.round($results.totalNutrients.CHOLE.quantity * 10) / 10 + $results.totalNutrients.CHOLE.unit;
-    $percentageCholesterol.textContent = Math.round($results.totalDaily.CHOLE.quantity) + '%';
+    if ($results.totalNutrients.CHOLE === undefined || $results.totalDaily.CHOLE === undefined) {
+      $cholesterol.className = 'hidden';
+      $percentageCholesterol.className = 'hidden';
+    } else {
+      $cholesterol.className = '';
+      $percentageCholesterol.className = '';
+      $cholesterol.textContent = 'Cholesterol ' + Math.round($results.totalNutrients.CHOLE.quantity * 10) / 10 + $results.totalNutrients.CHOLE.unit;
+      $percentageCholesterol.textContent = Math.round($results.totalDaily.CHOLE.quantity) + '%';
+    }
 
-    $sodium.textContent = 'Sodium ' + Math.round($results.totalNutrients.NA.quantity * 10) / 10 + $results.totalNutrients.NA.unit;
-    $percentageSodium.textContent = Math.round($results.totalDaily.NA.quantity) + '%';
+    if ($results.totalNutrients.NA === undefined || $results.totalDaily.NA === undefined) {
+      $sodium.className = 'hidden';
+      $percentageSodium.className = 'hidden';
+    } else {
+      $sodium.className = '';
+      $percentageSodium.className = '';
+      $sodium.textContent = 'Sodium ' + Math.round($results.totalNutrients.NA.quantity * 10) / 10 + $results.totalNutrients.NA.unit;
+      $percentageSodium.textContent = Math.round($results.totalDaily.NA.quantity) + '%';
+    }
 
     $totalCarb.textContent = 'Total Carbohydrate ' + Math.round($results.totalNutrients.CHOCDF.quantity * 10) / 10 + $results.totalNutrients.CHOCDF.unit;
     $percentageTotalCarb.textContent = Math.round($results.totalDaily.CHOCDF.quantity) + '%';
 
-    $fiber.textContent = 'Dietary Fiber ' + Math.round($results.totalNutrients.FIBTG.quantity * 10) / 10 + $results.totalNutrients.FIBTG.unit;
-    $percentageFiber.textContent = Math.round($results.totalDaily.FIBTG.quantity) + '%';
+    if ($results.totalNutrients.FIBTG === undefined || $results.totalDaily.FIBTG === undefined) {
+      $fiber.className = 'hidden';
+      $percentageFiber.className = 'hidden';
+    } else {
+      $fiber.className = '';
+      $percentageFiber.className = '';
+      $fiber.textContent = 'Dietary Fiber ' + Math.round($results.totalNutrients.FIBTG.quantity * 10) / 10 + $results.totalNutrients.FIBTG.unit;
+      $percentageFiber.textContent = Math.round($results.totalDaily.FIBTG.quantity) + '%';
+    }
 
-    $totalSugar.textContent = 'Total Sugars ' + Math.round($results.totalNutrients.SUGAR.quantity * 10) / 10 + $results.totalNutrients.SUGAR.unit;
+    if ($results.totalNutrients.SUGAR === undefined) {
+      $totalSugar.className = 'hidden';
+    } else {
+      $totalSugar.className = '';
+      $totalSugar.textContent = 'Total Sugars ' + Math.round($results.totalNutrients.SUGAR.quantity * 10) / 10 + $results.totalNutrients.SUGAR.unit;
+    }
 
     $addedSugars.textContent = 'Includes - Added Sugars';
 
     $protein.textContent = 'Protein ' + Math.round($results.totalNutrients.PROCNT.quantity * 10) / 10 + $results.totalNutrients.PROCNT.unit;
     $percentageProtein.textContent = Math.round($results.totalDaily.PROCNT.quantity) + '%';
 
-    $vitaminD.textContent = 'Vitamin D ' + Math.round($results.totalNutrients.VITD.quantity * 10) / 10 + $results.totalNutrients.VITD.unit;
-    $percentageVitaminD.textContent = Math.round($results.totalDaily.VITD.quantity) + '%';
+    if ($results.totalNutrients.VITD === undefined || $results.totalDaily.VITD === undefined) {
+      $vitaminD.className = 'hidden';
+      $percentageVitaminD.className = 'hidden';
+    } else {
+      $vitaminD.className = '';
+      $percentageVitaminD.className = '';
+      $vitaminD.textContent = 'Vitamin D ' + Math.round($results.totalNutrients.VITD.quantity * 10) / 10 + $results.totalNutrients.VITD.unit;
+      $percentageVitaminD.textContent = Math.round($results.totalDaily.VITD.quantity) + '%';
+    }
 
-    $calcium.textContent = 'Calcium ' + Math.round($results.totalNutrients.CA.quantity * 10) / 10 + $results.totalNutrients.CA.unit;
-    $percentageCalcium.textContent = Math.round($results.totalDaily.CA.quantity) + '%';
+    if ($results.totalNutrients.CA === undefined || $results.totalDaily.CA === undefined) {
+      $calcium.className = 'hidden';
+      $percentageCalcium.className = 'hidden';
+    } else {
+      $calcium.className = '';
+      $percentageCalcium.className = '';
+      $calcium.textContent = 'Calcium ' + Math.round($results.totalNutrients.CA.quantity * 10) / 10 + $results.totalNutrients.CA.unit;
+      $percentageCalcium.textContent = Math.round($results.totalDaily.CA.quantity) + '%';
+    }
 
-    $iron.textContent = 'Iron ' + Math.round($results.totalNutrients.FE.quantity * 10) / 10 + $results.totalNutrients.FE.unit;
-    $percentageIron.textContent = Math.round($results.totalDaily.FE.quantity) + '%';
+    if ($results.totalNutrients.FE === undefined || $results.totalDaily.FE === undefined) {
+      $iron.className = 'hidden';
+      $percentageIron.className = 'hidden';
+    } else {
+      $iron.className = '';
+      $percentageIron.className = '';
+      $iron.textContent = 'Iron ' + Math.round($results.totalNutrients.FE.quantity * 10) / 10 + $results.totalNutrients.FE.unit;
+      $percentageIron.textContent = Math.round($results.totalDaily.FE.quantity) + '%';
+    }
 
-    $potassium.textContent = 'Potassium ' + Math.round($results.totalNutrients.K.quantity * 10) / 10 + $results.totalNutrients.K.unit;
-    $percentagePotassium.textContent = Math.round($results.totalDaily.K.quantity) + '%';
+    if ($results.totalNutrients.K === undefined || $results.totalDaily.K === undefined) {
+      $potassium.className = 'hidden';
+      $percentagePotassium.className = 'hidden';
+    } else {
+      $potassium.className = 'hidden';
+      $percentagePotassium.className = 'hidden';
+      $potassium.textContent = 'Potassium ' + Math.round($results.totalNutrients.K.quantity * 10) / 10 + $results.totalNutrients.K.unit;
+      $percentagePotassium.textContent = Math.round($results.totalDaily.K.quantity) + '%';
+    }
 
     $percentValues.textContent = '* Percent Daily Values are based on a 2000 calorie diet';
-
     $unit.textContent = 'gram';
     $food.textContent = data.search;
     $energy.textContent = $results.calories + ' kcal';
     $weight.textContent = Math.round($results.totalWeight * 10) / 10 + ' g';
-
   });
   xhr.open('GET', originalUrl);
   xhr.send();
-
 }
 $clickHereButton.addEventListener('click', showNutritionLabel);
