@@ -95,6 +95,11 @@
   font-family: Redressed, cursive;
   color: #fff;
   text-decoration: none;
+  transition: font-size 0.5s;
+}
+
+.title:hover {
+  font-size: 74px;
 }
 
 li {
