@@ -160,7 +160,6 @@ function apiSearch(foodSearch) {
       data.nextEntryId++;
       data.searchedEntries.push(foodItems);
       $iElement.addEventListener('click', favorite);
-
     }
   });
   xhr.open('GET', originalUrl);
