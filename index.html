@@ -11,6 +11,9 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Redressed&family=Signika+Negative:wght@600&family=Unna:wght@700&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
   <header>
@@ -19,6 +22,7 @@
         <div class="column-full">
           <img src="images/MiMacLogo.png" alt="logo" class="logo">
           <a href="#" class="title">MicMac</a>
+          <a href="#" class="header-favorites">Favorites</a>
         </div>
       </div>
     </div>
@@ -82,7 +86,7 @@
         </div>
       </div>
     </div>
-    <!-- HIDDEN  -->
+
     <div data-view="searched-results" class="container hidden">
       <div class="row">
         <div class="column-full text-center">
@@ -93,11 +97,14 @@
       </div>
       <div class="row center width-95">
         <ul id="searched-results" class="padding-inline-0">
+
+
           <!-- <li class="style-none">
             <div class="food-card">
+              <i class="far fa-star"></i>
               <h2></h2>
               <img
-                src="" class="searched-image">
+              src="" class="searched-image">
               <p></p>
               <h3></h3>
               <p></p>
@@ -105,6 +112,8 @@
               <p></p>
             </div>
           </li> -->
+
+
         </ul>
       </div>
     </div>
@@ -220,6 +229,21 @@
         </div>
       </div>
     </div>
+
+    <div data-view="saved-items" class="container silver-background hidden">
+      <div class="row">
+        <div class="column-full text-center no-entries">
+          <h1>Saved Searches</h1>
+          <h3>No Food Items have been saved</h3>
+        </div>
+        <ul>
+
+        </ul>
+      </div>
+    </div>
+
+
+
     <div id="connect">
       <div class="container black-background">
         <div class="row text-center footer-padding">

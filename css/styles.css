@@ -102,6 +102,25 @@
   font-size: 74px;
 }
 
+.header-favorites {
+  font-size: 30px;
+  font-family:
+    Redressed,
+    cursive;
+  color: #fff;
+  margin-left: 1.6rem;
+  text-decoration: none;
+  transition: font-size 0.5s;
+}
+
+.header-favorites:hover {
+  font-size: 42px;
+}
+
+.no-entries {
+  height: 70vh;
+}
+
 li {
   display: inline-block;
   transition: transform 0.5s;
@@ -311,4 +330,9 @@ td {
 
 .box-shadow {
   box-shadow: 5px 8px 8px rgba(118, 114, 114, 55%);
+}
+
+.fa-star {
+  font-size: 26px;
+  margin-left: 85%;
 }

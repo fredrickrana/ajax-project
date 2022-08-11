@@ -25,13 +25,21 @@ function viewSwap() {
     $silverBackground.className = 'container silver-background';
     $searchResults.className = 'hidden';
     $foodInformation.className = 'hidden';
+    $savedItems.className = 'hidden';
   } else if (data.view === 'searched-results') {
     $searchResults.className = 'container';
     $silverBackground.className = 'hidden';
     $foodInformation.className = 'hidden';
+    $savedItems.className = 'hidden';
   } else if (data.view === 'food-information') {
     $foodInformation.className = 'container';
     $searchResults.className = 'hidden';
+    $savedItems.className = 'hidden';
+  } else if (data.view === 'saved-items') {
+    $savedItems.className = 'container silver-background';
+    $searchResults.className = 'hidden';
+    $silverBackground.className = 'hidden';
+    $foodInformation.className = 'hidden';
   }
 }
 
@@ -50,6 +58,7 @@ function carousel() {
 
 function search(event) {
   event.preventDefault();
+  data.searchedEntries = [];
   var $foodSearch = $searchBar.value;
   if ($foodSearch === '') {
     return;
@@ -57,6 +66,8 @@ function search(event) {
   data.search = $foodSearch;
   resetSearch();
   apiSearch($foodSearch);
+
+  data.nextEntryId = 1;
   $searchBar.value = '';
   $searchDescription.textContent = 'Search results for ' + '"' + $foodSearch + '"';
   data.view = 'searched-results';
@@ -89,11 +100,20 @@ function apiSearch(foodSearch) {
       var $protein = Math.floor($results[i].food.nutrients.PROCNT) + ' grams';
       var $fat = Math.floor($results[i].food.nutrients.FAT) + ' grams';
       var $carbohydrate = Math.floor($results[i].food.nutrients.CHOCDF) + ' grams';
+
       var $liElement = document.createElement('li');
       $liElement.setAttribute('class', 'style-none');
+
+      $liElement.setAttribute('data-entry-id', data.nextEntryId);
+
       var $divOne = document.createElement('div');
       $divOne.setAttribute('class', 'food-card');
       $liElement.appendChild($divOne);
+
+      var $iElement = document.createElement('i');
+      $iElement.setAttribute('class', 'far fa-star');
+      $divOne.appendChild($iElement);
+
       var $hTwoOne = document.createElement('h2');
       $hTwoOne.textContent = $foodName;
       $divOne.appendChild($hTwoOne);
@@ -121,6 +141,26 @@ function apiSearch(foodSearch) {
       $pElementFour.textContent = 'Carbohydrate: ' + $carbohydrate;
       $divOne.appendChild($pElementFour);
       $ul.appendChild($liElement);
+
+      for (var q = 0; q < data.savedEntries.length; q++) {
+        if (parseInt($liElement.getAttribute('data-entry-id')) === data.savedEntries[q].entryId) {
+          $iElement.className = 'fas fa-star';
+        }
+      }
+
+      var foodItems = {
+        foodItem: $foodName,
+        imageURL: $imageOfFood,
+        serving: 'Per Serving - 100 grams',
+        protein: $protein,
+        fat: $fat,
+        carbohydrate: $carbohydrate,
+        entryId: data.nextEntryId
+      };
+      data.nextEntryId++;
+      data.searchedEntries.push(foodItems);
+      $iElement.addEventListener('click', favorite);
+
     }
   });
   xhr.open('GET', originalUrl);
@@ -278,3 +318,27 @@ function showNutritionLabel(event) {
   xhr.send();
 }
 $clickHereButton.addEventListener('click', showNutritionLabel);
+
+function favorite(event) {
+  var $star = document.querySelectorAll('.fa-star');
+  for (var i = 0; i < $star.length; i++) {
+    if (event.target.getAttribute('class') === $star[i].getAttribute('class')) {
+      event.target.className = 'fas fa-star';
+      var $closestLi = event.target.closest('li');
+    }
+  }
+  for (var x = 0; x < data.searchedEntries.length; x++) {
+    if (parseInt($closestLi.getAttribute('data-entry-id')) === data.searchedEntries[x].entryId) {
+      data.savedEntries.push(data.searchedEntries[x]);
+    }
+  }
+}
+
+var $savedItems = document.querySelector('div[data-view = "saved-items"]');
+var $headerFavorites = document.querySelector('.header-favorites');
+
+function viewFavorites(event) {
+  data.view = 'saved-items';
+  viewSwap();
+}
+$headerFavorites.addEventListener('click', viewFavorites);
