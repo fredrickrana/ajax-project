@@ -10,6 +10,8 @@ var $applicationImages = ['images/iPhoneHomepage.png', 'images/iPhoneSalmon.png'
 var $device = document.querySelector('.application-image');
 var $clickHereButton = document.querySelector('.click-here-button');
 var $foodInformation = document.querySelector('div[data-view = "food-information"]');
+var $savedItems = document.querySelector('div[data-view = "saved-items"]');
+var $headerFavorites = document.querySelector('.header-favorites');
 setInterval(carousel, 4000);
 
 function goToHomePage(event) {
@@ -66,7 +68,6 @@ function search(event) {
   data.search = $foodSearch;
   resetSearch();
   apiSearch($foodSearch);
-
   data.nextEntryId = 1;
   $searchBar.value = '';
   $searchDescription.textContent = 'Search results for ' + '"' + $foodSearch + '"';
@@ -89,7 +90,6 @@ function apiSearch(foodSearch) {
   xhr.responseType = 'json';
   var originalUrl = 'https://api.edamam.com/api/food-database/v2/parser?app_id=3bb26765&app_key=2b1cec07263a9c58acf5631de5d1be8f&ingr=';
   originalUrl += foodSearch;
-
   xhr.addEventListener('load', function () {
     var $results = xhr.response.hints;
     for (var i = 0; i < $results.length; i++) {
@@ -100,20 +100,15 @@ function apiSearch(foodSearch) {
       var $protein = Math.floor($results[i].food.nutrients.PROCNT) + ' grams';
       var $fat = Math.floor($results[i].food.nutrients.FAT) + ' grams';
       var $carbohydrate = Math.floor($results[i].food.nutrients.CHOCDF) + ' grams';
-
       var $liElement = document.createElement('li');
       $liElement.setAttribute('class', 'style-none');
-
       $liElement.setAttribute('data-entry-id', data.nextEntryId);
-
       var $divOne = document.createElement('div');
       $divOne.setAttribute('class', 'food-card');
       $liElement.appendChild($divOne);
-
       var $iElement = document.createElement('i');
       $iElement.setAttribute('class', 'far fa-star');
       $divOne.appendChild($iElement);
-
       var $hTwoOne = document.createElement('h2');
       $hTwoOne.textContent = $foodName;
       $divOne.appendChild($hTwoOne);
@@ -141,13 +136,11 @@ function apiSearch(foodSearch) {
       $pElementFour.textContent = 'Carbohydrate: ' + $carbohydrate;
       $divOne.appendChild($pElementFour);
       $ul.appendChild($liElement);
-
       for (var q = 0; q < data.savedEntries.length; q++) {
         if (parseInt($liElement.getAttribute('data-entry-id')) === data.savedEntries[q].entryId) {
           $iElement.className = 'fas fa-star';
         }
       }
-
       var foodItems = {
         foodItem: $foodName,
         imageURL: $imageOfFood,
@@ -332,9 +325,6 @@ function favorite(event) {
     }
   }
 }
-
-var $savedItems = document.querySelector('div[data-view = "saved-items"]');
-var $headerFavorites = document.querySelector('.header-favorites');
 
 function viewFavorites(event) {
   data.view = 'saved-items';
