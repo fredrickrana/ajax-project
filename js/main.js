@@ -13,14 +13,11 @@ var $clickHereButton = document.querySelector('.click-here-button');
 var $foodInformation = document.querySelector('div[data-view = "food-information"]');
 var $savedItems = document.querySelector('div[data-view = "saved-items"]');
 var $headerFavorites = document.querySelector('.header-favorites');
-
 var $noEntries = document.querySelector('.no-entries');
 var $imageSubstitute = 'images/foodSubstitute.png';
-
 setInterval(carousel, 4000);
 
 function goToHomePage(event) {
-  // resetSearch();
   data.view = 'home-page';
   viewSwap();
 }
@@ -104,7 +101,6 @@ function apiSearch(foodSearch) {
       var $protein = Math.floor($results[i].food.nutrients.PROCNT) + ' grams';
       var $fat = Math.floor($results[i].food.nutrients.FAT) + ' grams';
       var $carbohydrate = Math.floor($results[i].food.nutrients.CHOCDF) + ' grams';
-
       var $foodId = $results[i].food.foodId + $foodName;
 
       var $liElement = document.createElement('li');
@@ -145,7 +141,6 @@ function apiSearch(foodSearch) {
       $pElementFour.textContent = 'Carbohydrate: ' + $carbohydrate;
       $divOne.appendChild($pElementFour);
       $ulSearch.appendChild($liElement);
-
       for (var q = 0; q < data.savedEntries.length; q++) {
         if ($liElement.getAttribute('data-entry-id') === data.savedEntries[q].foodId) {
           $iElement.className = 'fas fa-star';
