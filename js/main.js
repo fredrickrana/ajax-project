@@ -78,10 +78,19 @@ function search(event) {
 $searchButton.addEventListener('click', search);
 
 function resetSearch() {
-  var $li = document.querySelectorAll('li');
+  var $li = document.querySelectorAll('#searched-food-item');
   for (var i = 0; i < $li.length; i++) {
     if ($li.length !== 0) {
       $ulSearch.removeChild($li[i]);
+    }
+  }
+}
+
+function resetFavorites() {
+  var $li = document.querySelectorAll('#saved-food-item');
+  for (var i = 0; i < $li.length; i++) {
+    if ($li.length !== 0) {
+      $ulSaved.removeChild($li[i]);
     }
   }
 }
@@ -105,7 +114,7 @@ function apiSearch(foodSearch) {
 
       var $liElement = document.createElement('li');
       $liElement.setAttribute('class', 'style-none');
-
+      $liElement.setAttribute('id', 'searched-food-item');
       $liElement.setAttribute('data-entry-id', $foodId);
 
       var $divOne = document.createElement('div');
@@ -336,6 +345,7 @@ function viewFavorites(event) {
     $noEntries.className = 'no-entries';
   } else {
     $noEntries.className = 'hidden';
+    resetFavorites();
     renderSavedFood();
   }
   data.view = 'saved-items';
@@ -349,6 +359,7 @@ function renderSavedFood() {
     $liElement.setAttribute('data-entry-id', data.savedEntries[i].foodId);
     $liElement.setAttribute('class', 'style-none');
     $liElement.setAttribute('class', 'text-center');
+    $liElement.setAttribute('id', 'saved-food-item');
     var $divOne = document.createElement('div');
     $divOne.setAttribute('class', 'food-card');
     $liElement.appendChild($divOne);
