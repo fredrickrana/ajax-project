@@ -339,7 +339,7 @@ function favorite(event) {
 }
 
 function viewFavorites(event) {
-  if (data.savedEntries === []) {
+  if (data.savedEntries.length === 0) {
     $noEntries.className = 'no-entries';
   } else {
     $noEntries.className = 'hidden';
