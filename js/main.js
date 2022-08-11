@@ -15,7 +15,7 @@ var $savedItems = document.querySelector('div[data-view = "saved-items"]');
 var $headerFavorites = document.querySelector('.header-favorites');
 var $noEntries = document.querySelector('.no-entries');
 var $imageSubstitute = 'images/foodSubstitute.png';
-setInterval(carousel, 4000);
+setInterval(carousel, 3000);
 
 function goToHomePage(event) {
   data.view = 'home-page';
