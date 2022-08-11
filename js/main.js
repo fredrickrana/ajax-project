@@ -111,12 +111,10 @@ function apiSearch(foodSearch) {
       var $fat = Math.floor($results[i].food.nutrients.FAT) + ' grams';
       var $carbohydrate = Math.floor($results[i].food.nutrients.CHOCDF) + ' grams';
       var $foodId = $results[i].food.foodId + $foodName;
-
       var $liElement = document.createElement('li');
       $liElement.setAttribute('class', 'style-none');
       $liElement.setAttribute('id', 'searched-food-item');
       $liElement.setAttribute('data-entry-id', $foodId);
-
       var $divOne = document.createElement('div');
       $divOne.setAttribute('class', 'food-card');
       $liElement.appendChild($divOne);
