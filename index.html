@@ -11,6 +11,9 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Redressed&family=Signika+Negative:wght@600&family=Unna:wght@700&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
   <header>
@@ -19,6 +22,7 @@
         <div class="column-full">
           <img src="images/MiMacLogo.png" alt="logo" class="logo">
           <a href="#" class="title">MicMac</a>
+          <a href="#" class="header-favorites">Favorites</a>
         </div>
       </div>
     </div>
@@ -94,9 +98,10 @@
         <ul id="searched-results" class="padding-inline-0">
           <!-- <li class="style-none">
             <div class="food-card">
+              <i class="far fa-star"></i>
               <h2></h2>
               <img
-                src="" class="searched-image">
+              src="" class="searched-image">
               <p></p>
               <h3></h3>
               <p></p>
@@ -219,19 +224,44 @@
         </div>
       </div>
     </div>
+    <div data-view="saved-items" class="container silver-background hidden">
+      <div class="row">
+        <div class="column-full text-center">
+          <h1>Saved Searches</h1>
+          <h3 class="no-entries">No Food Items have been saved</h3>
+        </div>
+      </div>
+      <div class="row center">
+        <ul id="saved-results" class="padding-inline-0">
+          <!-- <li class="style-none">
+            <div class="food-card">
+              <i class="fas fa-star"></i>
+              <h2></h2>
+              <img
+              src="" class="searched-image">
+              <p></p>
+              <h3></h3>
+              <p></p>
+              <p></p>
+              <p></p>
+            </div>
+          </li> -->
+        </ul>
+      </div>
+    </div>
     <div id="connect">
       <div class="container black-background">
         <div class="row text-center footer-padding">
           <div class="column-full">
             <a target="_blank" href="https://github.com/fredrickrana" class="padding-15">
-              <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="github"
+              <img src="images/github.png" alt="github"
                 class="social-media">
             </a>
             <a target="_blank" href="https://www.linkedin.com/in/fredrick-rana" class="padding-15">
-              <img src="https://indyme.com/wp-content/uploads/2017/07/LinkedIn-Icon.png" alt="linkedin" class="social-media">
+              <img src="images/linkedIn.png" alt="linkedin" class="social-media">
             </a>
             <a target="_blank" href="https://forms.gle/hZ4B2duc9kgRTdJM8" class="padding-15">
-              <img src="https://p.kindpng.com/picc/s/225-2259351_report-icon-circle-flat-google-forms-logo-png.png"
+              <img src="images/googleForm.png"
                 alt="google-form" class="social-media">
             </a>
           </div>
