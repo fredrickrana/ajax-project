@@ -5,17 +5,22 @@ var $searchResults = document.querySelector('div[data-view = "searched-results"]
 var $imageBackground = document.querySelector('.image-background');
 var $silverBackground = document.querySelector('.silver-background');
 var $searchDescription = document.querySelector('.search-description');
-var $ul = document.querySelector('#searched-results');
+var $ulSearch = document.querySelector('#searched-results');
+var $ulSaved = document.querySelector('#saved-results');
 var $applicationImages = ['images/iPhoneHomepage.png', 'images/iPhoneSalmon.png', 'images/iPhoneSpaghetti.png'];
 var $device = document.querySelector('.application-image');
 var $clickHereButton = document.querySelector('.click-here-button');
 var $foodInformation = document.querySelector('div[data-view = "food-information"]');
 var $savedItems = document.querySelector('div[data-view = "saved-items"]');
 var $headerFavorites = document.querySelector('.header-favorites');
+
+var $noEntries = document.querySelector('.no-entries');
+var $imageSubstitute = 'images/foodSubstitute.png';
+
 setInterval(carousel, 4000);
 
 function goToHomePage(event) {
-  resetSearch();
+  // resetSearch();
   data.view = 'home-page';
   viewSwap();
 }
@@ -68,7 +73,6 @@ function search(event) {
   data.search = $foodSearch;
   resetSearch();
   apiSearch($foodSearch);
-  data.nextEntryId = 1;
   $searchBar.value = '';
   $searchDescription.textContent = 'Search results for ' + '"' + $foodSearch + '"';
   data.view = 'searched-results';
@@ -80,7 +84,7 @@ function resetSearch() {
   var $li = document.querySelectorAll('li');
   for (var i = 0; i < $li.length; i++) {
     if ($li.length !== 0) {
-      $ul.removeChild($li[i]);
+      $ulSearch.removeChild($li[i]);
     }
   }
 }
@@ -90,19 +94,24 @@ function apiSearch(foodSearch) {
   xhr.responseType = 'json';
   var originalUrl = 'https://api.edamam.com/api/food-database/v2/parser?app_id=3bb26765&app_key=2b1cec07263a9c58acf5631de5d1be8f&ingr=';
   originalUrl += foodSearch;
-  xhr.addEventListener('load', function () {
+  xhr.addEventListener('load', function renderSearchedFood() {
     var $results = xhr.response.hints;
     for (var i = 0; i < $results.length; i++) {
       var $foodName = $results[i].food.label;
       var $imageOfFood = $results[i].food.image;
-      var $imageSubstitute = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1Gz22F4NcRxJNwsNyqzzU_aWXvAAmZtWbuw&usqp=CAU';
+      var $imageSubstitute = 'images/foodSubstitute.png';
       var $calories = Math.floor($results[i].food.nutrients.ENERC_KCAL);
       var $protein = Math.floor($results[i].food.nutrients.PROCNT) + ' grams';
       var $fat = Math.floor($results[i].food.nutrients.FAT) + ' grams';
       var $carbohydrate = Math.floor($results[i].food.nutrients.CHOCDF) + ' grams';
+
+      var $foodId = $results[i].food.foodId + $foodName;
+
       var $liElement = document.createElement('li');
       $liElement.setAttribute('class', 'style-none');
-      $liElement.setAttribute('data-entry-id', data.nextEntryId);
+
+      $liElement.setAttribute('data-entry-id', $foodId);
+
       var $divOne = document.createElement('div');
       $divOne.setAttribute('class', 'food-card');
       $liElement.appendChild($divOne);
@@ -135,9 +144,10 @@ function apiSearch(foodSearch) {
       var $pElementFour = document.createElement('p');
       $pElementFour.textContent = 'Carbohydrate: ' + $carbohydrate;
       $divOne.appendChild($pElementFour);
-      $ul.appendChild($liElement);
+      $ulSearch.appendChild($liElement);
+
       for (var q = 0; q < data.savedEntries.length; q++) {
-        if (parseInt($liElement.getAttribute('data-entry-id')) === data.savedEntries[q].entryId) {
+        if ($liElement.getAttribute('data-entry-id') === data.savedEntries[q].foodId) {
           $iElement.className = 'fas fa-star';
         }
       }
@@ -145,12 +155,12 @@ function apiSearch(foodSearch) {
         foodItem: $foodName,
         imageURL: $imageOfFood,
         serving: 'Per Serving - 100 grams',
+        calories: $calories,
         protein: $protein,
         fat: $fat,
         carbohydrate: $carbohydrate,
-        entryId: data.nextEntryId
+        foodId: $foodId
       };
-      data.nextEntryId++;
       data.searchedEntries.push(foodItems);
       $iElement.addEventListener('click', favorite);
     }
@@ -320,14 +330,62 @@ function favorite(event) {
     }
   }
   for (var x = 0; x < data.searchedEntries.length; x++) {
-    if (parseInt($closestLi.getAttribute('data-entry-id')) === data.searchedEntries[x].entryId) {
+    if ($closestLi.getAttribute('data-entry-id') === data.searchedEntries[x].foodId) {
       data.savedEntries.push(data.searchedEntries[x]);
     }
   }
 }
 
 function viewFavorites(event) {
+  if (data.savedEntries === []) {
+    $noEntries.className = 'no-entries';
+  } else {
+    $noEntries.className = 'hidden';
+    renderSavedFood();
+  }
   data.view = 'saved-items';
   viewSwap();
 }
 $headerFavorites.addEventListener('click', viewFavorites);
+
+function renderSavedFood() {
+  for (var i = 0; i < data.savedEntries.length; i++) {
+    var $liElement = document.createElement('li');
+    $liElement.setAttribute('data-entry-id', data.savedEntries[i].foodId);
+    $liElement.setAttribute('class', 'style-none');
+    $liElement.setAttribute('class', 'text-center');
+    var $divOne = document.createElement('div');
+    $divOne.setAttribute('class', 'food-card');
+    $liElement.appendChild($divOne);
+    var $iElement = document.createElement('i');
+    $iElement.setAttribute('class', 'fas fa-star');
+    $divOne.appendChild($iElement);
+    var $hTwoOne = document.createElement('h2');
+    $hTwoOne.textContent = data.savedEntries[i].foodItem;
+    $divOne.appendChild($hTwoOne);
+    var $imgElementOne = document.createElement('img');
+    if (data.savedEntries[i].imageURL !== undefined) {
+      $imgElementOne.setAttribute('src', data.savedEntries[i].imageURL);
+    } else {
+      $imgElementOne.setAttribute('src', $imageSubstitute);
+    }
+    $imgElementOne.setAttribute('class', 'searched-image');
+    $divOne.appendChild($imgElementOne);
+    var $pElementOne = document.createElement('p');
+    $pElementOne.textContent = data.savedEntries[i].serving;
+    $divOne.appendChild($pElementOne);
+    var $hThreeOne = document.createElement('h3');
+    $hThreeOne.textContent = data.savedEntries[i].calories + ' Calories';
+    $divOne.appendChild($hThreeOne);
+    var $pElementTwo = document.createElement('p');
+    $pElementTwo.textContent = 'Protein: ' + data.savedEntries[i].protein;
+    $divOne.appendChild($pElementTwo);
+    var $pElementThree = document.createElement('p');
+    $pElementThree.textContent = 'Fat: ' + data.savedEntries[i].fat;
+    $divOne.appendChild($pElementThree);
+    var $pElementFour = document.createElement('p');
+    $pElementFour.textContent = 'Carbohydrate: ' + data.savedEntries[i].carbohydrate;
+    $divOne.appendChild($pElementFour);
+    $ulSaved.appendChild($liElement);
+  }
+}

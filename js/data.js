@@ -3,8 +3,7 @@ var data = {
   view: 'home-page',
   search: null,
   searchedEntries: [],
-  savedEntries: [],
-  nextEntryId: 1
+  savedEntries: []
 };
 
 var savedItems = localStorage.getItem('saved-food-items');
