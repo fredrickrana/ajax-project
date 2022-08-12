@@ -17,36 +17,6 @@ var $noEntries = document.querySelector('.no-entries');
 var $imageSubstitute = 'images/foodSubstitute.png';
 setInterval(carousel, 3000);
 
-function goToHomePage(event) {
-  data.view = 'home-page';
-  viewSwap();
-}
-$title.addEventListener('click', goToHomePage);
-
-function viewSwap() {
-  if (data.view === 'home-page') {
-    $imageBackground.className = 'container image-background';
-    $silverBackground.className = 'container silver-background';
-    $searchResults.className = 'hidden';
-    $foodInformation.className = 'hidden';
-    $savedItems.className = 'hidden';
-  } else if (data.view === 'searched-results') {
-    $searchResults.className = 'container';
-    $silverBackground.className = 'hidden';
-    $foodInformation.className = 'hidden';
-    $savedItems.className = 'hidden';
-  } else if (data.view === 'food-information') {
-    $foodInformation.className = 'container';
-    $searchResults.className = 'hidden';
-    $savedItems.className = 'hidden';
-  } else if (data.view === 'saved-items') {
-    $savedItems.className = 'container silver-background';
-    $searchResults.className = 'hidden';
-    $silverBackground.className = 'hidden';
-    $foodInformation.className = 'hidden';
-  }
-}
-
 function carousel() {
   var $currentImage = $applicationImages.length - 1;
   for (var i = 0; i < $applicationImages.length; i++) {
@@ -323,19 +293,6 @@ function showNutritionLabel(event) {
 }
 $clickHereButton.addEventListener('click', showNutritionLabel);
 
-function viewFavorites(event) {
-  if (data.savedEntries.length === 0) {
-    $noEntries.className = 'no-entries';
-  } else {
-    $noEntries.className = 'hidden';
-    resetFavorites();
-    renderSavedFood();
-  }
-  data.view = 'saved-items';
-  viewSwap();
-}
-$headerFavorites.addEventListener('click', viewFavorites);
-
 function renderSavedFood() {
   for (var i = 0; i < data.savedEntries.length; i++) {
     var $liElement = document.createElement('li');
@@ -377,6 +334,49 @@ function renderSavedFood() {
     $divOne.appendChild($pElementFour);
     $ulSaved.appendChild($liElement);
     $iElement.addEventListener('click', favorite);
+  }
+}
+
+function goToHomePage(event) {
+  data.view = 'home-page';
+  viewSwap();
+}
+$title.addEventListener('click', goToHomePage);
+
+function viewFavorites(event) {
+  if (data.savedEntries.length === 0) {
+    $noEntries.className = 'no-entries';
+  } else {
+    $noEntries.className = 'hidden';
+    resetFavorites();
+    renderSavedFood();
+  }
+  data.view = 'saved-items';
+  viewSwap();
+}
+$headerFavorites.addEventListener('click', viewFavorites);
+
+function viewSwap() {
+  if (data.view === 'home-page') {
+    $imageBackground.className = 'container image-background';
+    $silverBackground.className = 'container silver-background';
+    $searchResults.className = 'hidden';
+    $foodInformation.className = 'hidden';
+    $savedItems.className = 'hidden';
+  } else if (data.view === 'searched-results') {
+    $searchResults.className = 'container';
+    $silverBackground.className = 'hidden';
+    $foodInformation.className = 'hidden';
+    $savedItems.className = 'hidden';
+  } else if (data.view === 'food-information') {
+    $foodInformation.className = 'container';
+    $searchResults.className = 'hidden';
+    $savedItems.className = 'hidden';
+  } else if (data.view === 'saved-items') {
+    $savedItems.className = 'container silver-background';
+    $searchResults.className = 'hidden';
+    $silverBackground.className = 'hidden';
+    $foodInformation.className = 'hidden';
   }
 }
 
