@@ -323,21 +323,6 @@ function showNutritionLabel(event) {
 }
 $clickHereButton.addEventListener('click', showNutritionLabel);
 
-function favorite(event) {
-  var $star = document.querySelectorAll('.fa-star');
-  for (var i = 0; i < $star.length; i++) {
-    if (event.target.getAttribute('class') === $star[i].getAttribute('class')) {
-      event.target.className = 'fas fa-star';
-      var $closestLi = event.target.closest('li');
-    }
-  }
-  for (var x = 0; x < data.searchedEntries.length; x++) {
-    if ($closestLi.getAttribute('data-entry-id') === data.searchedEntries[x].foodId) {
-      data.savedEntries.push(data.searchedEntries[x]);
-    }
-  }
-}
-
 function viewFavorites(event) {
   if (data.savedEntries.length === 0) {
     $noEntries.className = 'no-entries';
@@ -391,5 +376,37 @@ function renderSavedFood() {
     $pElementFour.textContent = 'Carbohydrate: ' + data.savedEntries[i].carbohydrate;
     $divOne.appendChild($pElementFour);
     $ulSaved.appendChild($liElement);
+    $iElement.addEventListener('click', favorite);
+  }
+}
+
+function favorite(event) {
+  var $star = document.querySelectorAll('.fa-star');
+  if (event.target.className === 'far fa-star') {
+    for (var i = 0; i < $star.length; i++) {
+      if (event.target.getAttribute('class') === $star[i].getAttribute('class')) {
+        event.target.className = 'fas fa-star';
+        var $closestLi = event.target.closest('li');
+      }
+    }
+    for (var x = 0; x < data.searchedEntries.length; x++) {
+      if ($closestLi.getAttribute('data-entry-id') === data.searchedEntries[x].foodId) {
+        data.savedEntries.push(data.searchedEntries[x]);
+      }
+    }
+  } else if (event.target.className === 'fas fa-star') {
+    for (var q = 0; q < $star.length; q++) {
+      if (event.target.getAttribute('class') === $star[q].getAttribute('class')) {
+        event.target.className = 'far fa-star';
+        var $closestLiElement = event.target.closest('li');
+      }
+    }
+    for (var a = 0; a < data.savedEntries.length; a++) {
+      if ($closestLiElement.getAttribute('data-entry-id') === data.savedEntries[a].foodId) {
+        data.savedEntries.splice(a, 1);
+        resetFavorites();
+        renderSavedFood();
+      }
+    }
   }
 }
