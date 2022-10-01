@@ -96,6 +96,7 @@
   color: #fff;
   text-decoration: none;
   transition: font-size 0.5s;
+  cursor: pointer;
 }
 
 .title:hover {
@@ -111,6 +112,7 @@
   margin-left: 1.6rem;
   text-decoration: none;
   transition: font-size 0.5s;
+  cursor: pointer;
 }
 
 .header-favorites:hover {
@@ -159,6 +161,7 @@ li:hover {
   color: white;
   background-color: rgb(37, 37, 142, 85%);
   font-size: 16px;
+  cursor: pointer;
   transition: background-color 1s;
 }
 
@@ -253,6 +256,7 @@ li:hover {
   color: white;
   background-color: rgb(37, 37, 142, 85%);
   font-size: 12px;
+  cursor: pointer;
   transition: background-color 1s;
 }
 
@@ -335,4 +339,9 @@ td {
 .fa-star {
   font-size: 26px;
   margin-left: 85%;
+  cursor: pointer;
+}
+
+.fa-star:hover {
+  opacity: 70%;
 }
