@@ -15,7 +15,7 @@
 }
 
 .image-background {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.1)), url("https://blog.bonsecours.com/wp-content/uploads/2020/01/BSC_HealthyPlate_1200x628_Revised-1200x610.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.1)), url("/images/herobackground.png");
   background-repeat: no-repeat;
   background-size: cover;
   min-width: 100%;
