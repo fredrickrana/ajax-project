@@ -138,7 +138,7 @@
 
 @media (max-width: 768px) {
   .header-favorites {
-    font-size: 25px;
+    font-size: 20px;
   }
 
   .header-favorites:hover {
@@ -156,7 +156,7 @@ li {
 }
 
 li:hover {
-  transform: scale(1.1);
+  transform: scale(1.01);
 }
 
 .search-statement {
@@ -183,7 +183,7 @@ li:hover {
   transition: width 2s;
 }
 
-@media (min-width: 390px) {
+@media (max-width: 768px) {
   .search-bar {
     padding: 8px;
     font-size: 12px;
@@ -203,6 +203,13 @@ li:hover {
   font-size: 16px;
   cursor: pointer;
   transition: background-color 1s;
+}
+
+@media (max-width: 768px) {
+  .search-button {
+    padding: 8px;
+    font-size: 12px;
+  }
 }
 
 .search-button:hover {
@@ -251,6 +258,41 @@ li:hover {
   margin: 0 0 50px;
 }
 
+@media (max-width: 768px) {
+  .macrochart {
+    height: 70px;
+  }
+
+  .groceries {
+    height: 70px;
+  }
+
+  .diary {
+    height: 70px;
+  }
+
+  .calendar {
+    height: 70px;
+  }
+
+  .subtitle {
+    font-size: 10px;
+  }
+
+  .description {
+    font-size: 8px;
+  }
+
+  .nutrition-image {
+    width: 300px;
+  }
+
+  .application-image {
+    width: 200px;
+    height: 320px;
+  }
+}
+
 .social-media {
   width: 45px;
   height: 40px;
@@ -263,11 +305,15 @@ li:hover {
 }
 
 .food-card {
-  border: #000 solid 2px;
+  border: #000 solid 1px;
   border-radius: 20px;
   margin: 5px;
   padding: 20px;
-  box-shadow: 5px 5px 10px rgb(75, 67, 67);
+  box-shadow:
+    0 1px 5px rgb(106, 104, 104),
+    inset 0 0 9px white;
+
+  /* box-shadow: 5px 5px 10px rgb(75, 67, 67); */
   background-color: #fff;
 }
 
@@ -287,6 +333,13 @@ li:hover {
   height: 270px;
   border-radius: 30px;
   box-shadow: 5px 5px 10px rgba(118, 114, 114);
+}
+
+@media (max-width: 768px) {
+  .article-image {
+    width: 300px;
+    height: 180px;
+  }
 }
 
 .click-here-button {
@@ -316,7 +369,7 @@ li:hover {
   list-style: none;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 200px) {
   .padding-20 {
     padding: 0;
   }
