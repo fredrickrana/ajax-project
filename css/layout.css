@@ -33,7 +33,7 @@
   margin: auto;
 }
 
-@media (min-width: 1290px) {
+@media (min-width: 1280px) {
   .column-half {
     flex-basis: 25%;
   }
