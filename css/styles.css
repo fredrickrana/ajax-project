@@ -165,6 +165,12 @@ li:hover {
   transform: scale(1.01);
 }
 
+@media (max-width: 768px) {
+  li {
+    font-size: 14px;
+  }
+}
+
 .search-statement {
   font-family: "Signika Negative", sans-serif;
   color: #fff;
@@ -314,6 +320,14 @@ li:hover {
 .searched-image {
   width: 200px;
   height: 200px;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .searched-image {
+    width: 120px;
+    height: 120px;
+  }
 }
 
 .food-card {
@@ -370,6 +384,24 @@ li:hover {
   background-color: rgb(0, 0, 88);
 }
 
+.search-description {
+  font-size: 24px;
+}
+
+.search-information {
+  font-size: 20px;
+}
+
+@media (max-width: 768px) {
+  .search-description {
+    font-size: 18px;
+  }
+
+  .search-information {
+    font-size: 14px;
+  }
+}
+
 .hidden {
   display: none;
 }
@@ -420,6 +452,23 @@ td {
   height: 450px;
   margin: 50px;
   border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .food-detail-image {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+.food-information {
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .food-information {
+    font-size: 11px;
+  }
 }
 
 .box-shadow {
